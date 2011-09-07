@@ -1,0 +1,55 @@
+<%= form_errors! %>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+
+  <fieldset>
+
+    <legend>Settings</legend>
+
+    <div class="clearfix">
+      <%= f.label :email %>
+      <div class="input">
+        <%= f.email_field :email %>
+      </div>
+    </div>
+
+    <div class="clearfix">
+      <%= f.label :password %>
+      <div class="input">
+        <%= f.password_field :password %>
+        <span class="help-block">
+          Leave blank if you don't want to change it
+        </span>
+      </div>
+    </div>
+
+    <div class="clearfix">
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <div class="input">
+        <%= f.password_field :password_confirmation %>
+      </div>
+    </div>
+
+    <div class="clearfix">
+      <%= f.label :current_password, "Current Password" %>
+      <div class="input">
+        <%= f.password_field :current_password %>
+        <span class="help-block">
+          We need your current password to confirm your changes
+        </span>
+      </div>
+    </div>
+
+    <div class="clearfix">
+      <div class="input">
+        <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Update", :class => "btn primary" %>
+    </div>
+
+  </fieldset>
+
+<% end %>
