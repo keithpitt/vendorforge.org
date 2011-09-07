@@ -1,10 +1,9 @@
 source 'http://rubygems.org'
 
+# Rails 3.1, oooer
 gem 'rails', '3.1.0'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
+# Postgres database
 gem 'pg'
 
 # Gems used only for assets and not required
@@ -15,16 +14,14 @@ group :assets do
   gem 'uglifier'
 end
 
+# jQuery for rails
 gem 'jquery-rails'
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
+# Deploying on Heroku
+gem 'heroku'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'ruby-debug19', :require => 'ruby-debug'
 
 # Authentication with devise
 gem 'devise'
