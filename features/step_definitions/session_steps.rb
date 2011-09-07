@@ -27,3 +27,11 @@ When /^I have already logged in as "([^"]*)"$/ do |login|
   Given %{I have already signed up as "#{login}"}
   And %{I login successfully}
 end
+
+Then /^I should be logged in$/ do
+  page.should have_content("Logout")
+end
+
+Then /^I should not be logged in$/ do
+  page.should_not have_content("Logout")
+end
