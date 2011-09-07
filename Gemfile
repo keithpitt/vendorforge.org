@@ -17,11 +17,12 @@ end
 # jQuery for rails
 gem 'jquery-rails'
 
-# Deploying on Heroku
-gem 'heroku'
-
-# To use debugger
-gem 'ruby-debug19', :require => 'ruby-debug'
+group :development, :test do
+  # Deploying on Heroku
+  gem 'heroku'
+  # To use debugger
+  gem 'ruby-debug19', :require => 'ruby-debug'
+end
 
 # Authentication with devise
 gem 'devise'
