@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-VendorkitCom::Application.load_tasks
+VendorKit::Application.load_tasks

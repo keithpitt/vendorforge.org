@@ -1,4 +1,4 @@
-VendorkitCom::Application.routes.draw do
+VendorKit::Application.routes.draw do
 
   devise_for :users
 
