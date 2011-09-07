@@ -35,8 +35,11 @@ group :development, :test do
   # Cucumber for testing
   gem 'cucumber-rails'
 
-  # Capybare for web testing
-  gem 'capybara'
+  # I like to have a clean ship
+  gem 'database_cleaner'
+
+  # Headless testing
+  gem 'capybara-webkit', :git => 'git://github.com/thoughtbot/capybara-webkit.git'
 
   # RSpec for testing
   gem 'rspec-rails'
