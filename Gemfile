@@ -6,6 +6,15 @@ gem 'rails', '3.1.0'
 # Postgres database
 gem 'pg'
 
+# jQuery for rails
+gem 'jquery-rails'
+
+# Authentication with devise
+gem 'devise'
+
+# File Uploads
+gem 'carrierwave'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -20,9 +29,6 @@ group :assets do
   gem 'uglifier'
 
 end
-
-# jQuery for rails
-gem 'jquery-rails'
 
 group :development, :test do
 
@@ -75,6 +81,3 @@ group :test_mac do
   gem 'fuubar'
 
 end
-
-# Authentication with devise
-gem 'devise'
