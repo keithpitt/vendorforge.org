@@ -9,19 +9,68 @@ gem 'pg'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+
+  # Sass stylesheets
   gem 'sass-rails', "  ~> 3.1.0"
+
+  # Coffeescript for nicer JavaScript
   gem 'coffee-rails', "~> 3.1.0"
+
+  # Compressionn gem for CSS/JavaScript
   gem 'uglifier'
+
 end
 
 # jQuery for rails
 gem 'jquery-rails'
 
 group :development, :test do
+
   # Deploying on Heroku
   gem 'heroku'
+
   # To use debugger
   gem 'ruby-debug19', :require => 'ruby-debug'
+
+  # Cucumber for testing
+  gem 'cucumber-rails'
+
+  # Capybare for web testing
+  gem 'capybara'
+
+  # RSpec for testing
+  gem 'rspec-rails'
+
+  # Remarkable for active record testing
+  gem 'remarkable_activerecord'
+
+  # Mocking/stubbing
+  gem 'rr'
+
+  # Guard for autotesting and such
+  gem 'guard'
+  gem 'guard-rspec'
+
+  # Generating testing + dummy data
+  gem 'factory_girl_rails'
+  gem 'forgery'
+
+  # Code coverage
+  gem 'rcov'
+
+end
+
+group :test_mac do
+
+  # Growl integration
+  gem 'growl'
+
+  # Something for something
+  gem 'rb-fsevent'
+
+  # Better rspec formatter
+  gem 'fuubar'
+
 end
 
 # Authentication with devise
