@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  def form_errors!
+  def form_errors!(resource)
     if resource.errors.present?
       content_tag :div, :class => "alert-message error" do
         (content_tag :p, "Whoops, Try Again", :style => "margin-bottom: 3px; font-weight: bold;").html_safe +

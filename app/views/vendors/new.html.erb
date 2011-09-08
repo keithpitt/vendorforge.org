@@ -1,0 +1,22 @@
+<%= form_errors!(@vendor) %>
+
+<%= form_for(@vendor) do |f| %>
+
+  <fieldset>
+
+    <legend>Upload a Vendor Package</legend>
+
+    <div class="clearfix">
+      <%= f.label :package %>
+      <div class="input">
+        <%= f.file_field :package %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Upload", :class => "btn primary" %>
+    </div>
+
+  </fieldset>
+
+<% end %>
