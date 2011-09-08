@@ -17,6 +17,9 @@ module NavigationHelpers
     when /^the registration page$/
       new_user_registration_path
 
+    when /^the vendor upload page$/
+      new_vendor_path
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
