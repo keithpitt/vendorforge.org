@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110908001010) do
+ActiveRecord::Schema.define(:version => 20110908054624) do
+
+  create_table "authors", :force => true do |t|
+    t.integer  "vendor_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "authors", ["vendor_id"], :name => "index_authors_on_vendor_id"
+
+  create_table "downloads", :force => true do |t|
+    t.integer  "vendor_id"
+    t.integer  "version_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "downloads", ["vendor_id"], :name => "index_downloads_on_vendor_id"
+  add_index "downloads", ["version_id"], :name => "index_downloads_on_version_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -34,5 +53,28 @@ ActiveRecord::Schema.define(:version => 20110908001010) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  create_table "vendors", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "homepage"
+    t.string   "github"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vendors", ["user_id"], :name => "index_vendors_on_user_id"
+
+  create_table "versions", :force => true do |t|
+    t.integer  "vendor_id"
+    t.integer  "user_id"
+    t.string   "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "versions", ["user_id"], :name => "index_versions_on_user_id"
+  add_index "versions", ["vendor_id"], :name => "index_versions_on_vendor_id"
 
 end

@@ -48,10 +48,13 @@ group :development, :test do
   gem 'capybara-webkit', :git => 'git://github.com/thoughtbot/capybara-webkit.git'
 
   # RSpec for testing
+  gem 'rspec'
+
+  # Rails love for RSpec
   gem 'rspec-rails'
 
   # Remarkable for active record testing
-  gem 'remarkable_activerecord'
+  gem 'remarkable_activerecord', '~> 4.0.0.alpha4'
 
   # Mocking/stubbing
   gem 'rr'

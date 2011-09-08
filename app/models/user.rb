@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token
 
+  has_many :vendors
+  has_many :versions
+
   protected
 
     def self.find_for_database_authentication(warden_conditions)

@@ -153,11 +153,15 @@ GEM
     rb-fsevent (0.4.3.1)
     rcov (0.9.10)
     rdoc (3.9.4)
-    remarkable (3.1.13)
-      rspec (>= 1.2.0)
-    remarkable_activerecord (3.1.13)
-      remarkable (~> 3.1.13)
-      rspec (>= 1.2.0)
+    remarkable (4.0.0.alpha4)
+      rspec (>= 2.0.0.alpha11)
+    remarkable_activemodel (4.0.0.alpha4)
+      remarkable (~> 4.0.0.alpha4)
+      rspec (>= 2.0.0.alpha11)
+    remarkable_activerecord (4.0.0.alpha4)
+      remarkable (~> 4.0.0.alpha4)
+      remarkable_activemodel (~> 4.0.0.alpha4)
+      rspec (>= 2.0.0.alpha11)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rr (1.0.4)
@@ -239,8 +243,9 @@ DEPENDENCIES
   rails (= 3.1.0)
   rb-fsevent
   rcov
-  remarkable_activerecord
+  remarkable_activerecord (~> 4.0.0.alpha4)
   rr
+  rspec
   rspec-rails
   ruby-debug19
   sass-rails (~> 3.1.0)
