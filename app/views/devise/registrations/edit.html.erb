@@ -48,6 +48,16 @@
     </div>
 
     <div class="clearfix">
+      <%= f.label :authentication_token, "API Token" %>
+      <div class="input">
+        <%= f.object.authentication_token %>
+        <span class="help-block">
+          Keep it secret, keep it safe.
+        </span>
+      </div>
+    </div>
+
+    <div class="clearfix">
       <div class="input">
         <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>
       </div>
