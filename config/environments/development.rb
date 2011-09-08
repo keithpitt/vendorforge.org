@@ -1,4 +1,4 @@
-VendorKit::Application.configure do
+Vendorage::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -29,5 +29,5 @@ VendorKit::Application.configure do
   config.assets.debug = true
 
   # Main config
-  config.action_mailer.default_url_options = { :host => 'vendorkit.dev' }
+  config.action_mailer.default_url_options = { :host => 'vendorage.dev' }
 end

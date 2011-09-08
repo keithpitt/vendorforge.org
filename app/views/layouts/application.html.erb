@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vendor Kit</title>
+  <title>Vendorage</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div class="container">
-    <h1 style="padding-top: 20px">Vendor Kit</h1>
+    <h1 style="padding-top: 20px">Vendorage</h1>
     <ul class="tabs">
       <li class="<%= controller_name == 'pages' ? "active" : "" %>"><%= link_to "Home", :root %></li>
       <% if user_signed_in? %>
