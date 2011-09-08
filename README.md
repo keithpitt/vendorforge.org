@@ -1,2 +1,2 @@
-# VendorKit Website
-A site to host vendor files
+# Vendorage Website
+A site to host and publish vendor files
