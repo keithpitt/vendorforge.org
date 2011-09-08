@@ -7,7 +7,12 @@ describe User do
   it { should have_many(:versions) }
   it { should have_many(:vendors) }
 
-  it "should create an API token after create"
+  it "should create an API token after create" do
+    user.authentication_token = nil
+    user.save
+
+    user.authentication_token.should_not be_nil
+  end
 
   describe "#find_for_database_authentication"do
 
