@@ -9,7 +9,7 @@ class VendorsController < ApplicationController
     @version.user = current_user
 
     if @version.save
-      redirect_to :root
+      redirect_to @version.vendor
     else
       render :action => :new
     end

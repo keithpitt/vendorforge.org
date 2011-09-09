@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110909041201) do
+ActiveRecord::Schema.define(:version => 20110909082431) do
 
   create_table "authors", :force => true do |t|
     t.integer  "vendor_id"
@@ -62,8 +62,11 @@ ActiveRecord::Schema.define(:version => 20110909041201) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "authors"
+    t.string   "email"
   end
 
+  add_index "vendors", ["name"], :name => "index_vendors_on_name"
   add_index "vendors", ["user_id"], :name => "index_vendors_on_user_id"
 
   create_table "versions", :force => true do |t|
@@ -73,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20110909041201) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "package"
+    t.text     "vendor_spec"
   end
 
   add_index "versions", ["user_id"], :name => "index_versions_on_user_id"
