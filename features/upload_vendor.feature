@@ -19,5 +19,5 @@ Feature: Upload Vendor Package
 
     When I upload a vendor package called "DKBenchmark-0.1-broken.vendor"
 
-    Then I should see "invalid vendor spec"
+    Then I should see "Missing vendor spec in package"
     And I should see the vendor upload form

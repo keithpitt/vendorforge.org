@@ -20,6 +20,12 @@ module NavigationHelpers
     when /^the vendor upload page$/
       new_vendor_path
 
+    when /^the "([^"]*)" vendor page$/
+      vendor_path(Vendor.where(:name => $1).first)
+
+    #   when /^(.*)'s profile page$/i
+    #     user_profile_path(User.find_by_login($1))
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

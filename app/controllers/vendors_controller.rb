@@ -11,6 +11,7 @@ class VendorsController < ApplicationController
     @version = current_user.versions.new(params[:version])
 
     if @version.save
+      flash[:success] = "Vendor uploaded successfully"
       redirect_to @version.vendor
     else
       render :action => :new
