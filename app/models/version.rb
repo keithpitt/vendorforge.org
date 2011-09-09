@@ -13,6 +13,7 @@ class Version < ActiveRecord::Base
   belongs_to :user
 
   validates :number, :presence => true
+  validates :user, :presence => true
 
   before_validation :extract_vendor_spec, :if => :package_changed?
   before_validation :update_from_vendor_spec, :if => :vendor_spec_changed?
@@ -24,23 +25,25 @@ class Version < ActiveRecord::Base
   private
 
     def extract_vendor_spec
-      begin
-        Zip::ZipFile.open(package.current_path) do |zipfile|
-          begin
-            json = zipfile.file.read("vendor.json")
-          rescue
-            raise MissingVendorSpec.new
+      if package.present?
+        begin
+          Zip::ZipFile.open(package.current_path) do |zipfile|
+            begin
+              json = zipfile.file.read("vendor.json")
+            rescue
+              raise MissingVendorSpec.new
+            end
+
+            spec = JSON.parse(json)
+            raise InvalidVendorSpec.new unless spec.present?
+
+            self.vendor_spec = spec
           end
-
-          spec = JSON.parse(json)
-          raise InvalidVendorSpec.new unless spec.present?
-
-          self.vendor_spec = spec
+        rescue MissingVendorSpec => e
+          errors.add(:package, :missing_spec)
+        rescue InvalidVendorSpec => e
+          errors.add(:package, :invalid_spec)
         end
-      rescue MissingVendorSpec => e
-        errors.add(:package, :missing_spec)
-      rescue InvalidVendorSpec => e
-        errors.add(:package, :invalid_spec)
       end
     end
 

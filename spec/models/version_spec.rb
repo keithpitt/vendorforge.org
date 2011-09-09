@@ -6,6 +6,7 @@ describe Version do
   it { should belong_to(:user) }
 
   it { should validate_presence_of(:number) }
+  it { should validate_presence_of(:user) }
 
   it "should have the package uploader mounted" do
     Version.uploaders[:package].should == PackageUploader

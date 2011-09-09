@@ -1,4 +1,4 @@
-Feature: Create Vendor
+Feature: Upload Vendor Package
 
   As an iOS Developer
   I want to upload vendor packages
@@ -19,5 +19,5 @@ Feature: Create Vendor
 
     When I upload a vendor package called "DKBenchmark-0.1-broken.vendor"
 
-    Then I should see "Vendor package curropted"
+    Then I should see "invalid vendor spec"
     And I should see the vendor upload form

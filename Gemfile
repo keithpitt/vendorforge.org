@@ -18,6 +18,9 @@ gem 'carrierwave'
 # Unzipping pants
 gem 'rubyzip'
 
+# For better ActiveRecord searching
+gem "squeel"
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -61,10 +64,6 @@ group :development, :test do
 
   # Mocking/stubbing
   gem 'rr'
-
-  # Guard for autotesting and such
-  gem 'guard'
-  gem 'guard-rspec'
 
   # Generating testing + dummy data
   gem 'factory_girl_rails'
