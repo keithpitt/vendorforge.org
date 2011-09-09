@@ -22,6 +22,22 @@ describe Version do
       version.number.should == "0.1"
     end
 
+    it "should return an error if the vendor package's spec is missing" do
+      vendor = File.open(Rails.root.join("spec", "resources", "vendors", "DKBenchmark-0.1-missing.vendor"))
+      version = Version.new(:package => vendor)
+      version.save
+
+      version.errors[:package].should_not be_nil
+    end
+
+    it "should return an error if the vendor package's spec is broken" do
+      vendor = File.open(Rails.root.join("spec", "resources", "vendors", "DKBenchmark-0.1-broken.vendor"))
+      version = Version.new(:package => vendor)
+      version.save
+
+      version.errors[:package].should_not be_nil
+    end
+
   end
 
   context 'setting a vendor spec' do

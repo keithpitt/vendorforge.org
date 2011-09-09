@@ -2,6 +2,9 @@ require 'zip/zipfilesystem'
 
 class Version < ActiveRecord::Base
 
+  class MissingVendorSpec < StandardError; end
+  class InvalidVendorSpec < StandardError; end
+
   serialize :vendor_spec
 
   mount_uploader :package, PackageUploader
@@ -21,9 +24,23 @@ class Version < ActiveRecord::Base
   private
 
     def extract_vendor_spec
-      Zip::ZipFile.open(package.current_path) do |zipfile|
-        spec = zipfile.file.read("vendor.json")
-        self.vendor_spec = JSON.parse(spec)
+      begin
+        Zip::ZipFile.open(package.current_path) do |zipfile|
+          begin
+            json = zipfile.file.read("vendor.json")
+          rescue
+            raise MissingVendorSpec.new
+          end
+
+          spec = JSON.parse(json)
+          raise InvalidVendorSpec.new unless spec.present?
+
+          self.vendor_spec = spec
+        end
+      rescue MissingVendorSpec => e
+        errors.add(:package, :missing_spec)
+      rescue InvalidVendorSpec => e
+        errors.add(:package, :invalid_spec)
       end
     end
 
