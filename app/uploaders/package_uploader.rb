@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class VendorUploader < CarrierWave::Uploader::Base
+class PackageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or ImageScience support:
   # include CarrierWave::RMagick

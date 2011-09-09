@@ -15,6 +15,9 @@ gem 'devise'
 # File Uploads
 gem 'carrierwave'
 
+# Unzipping pants
+gem 'rubyzip'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

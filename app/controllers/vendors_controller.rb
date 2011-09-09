@@ -1,13 +1,14 @@
 class VendorsController < ApplicationController
 
   def new
-    @vendor = current_user.vendors.build
+    @version = Version.new
   end
 
   def create
-    @vendor = current_user.vendors.build(params[:vendor])
+    @version = Version.new(params[:version])
+    @version.user = current_user
 
-    if @vendor.save!
+    if @version.save
       redirect_to :root
     else
       render :action => :new
