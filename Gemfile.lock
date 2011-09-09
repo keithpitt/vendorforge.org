@@ -72,7 +72,7 @@ GEM
       cucumber (~> 1.0.0)
       nokogiri (>= 1.4.6)
     database_cleaner (0.6.7)
-    devise (1.4.4)
+    devise (1.4.5)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
@@ -85,8 +85,7 @@ GEM
       factory_girl (~> 2.1.0)
       railties (>= 3.0.0)
     ffi (1.0.9)
-    forgery (0.4.3)
-      nokogiri (~> 1.4)
+    forgery (0.5.0)
     fuubar (0.0.6)
       rspec (~> 2.0)
       rspec-instafail (~> 0.1.8)
@@ -101,7 +100,7 @@ GEM
       term-ansicolor (~> 1.0.5)
     hike (1.2.1)
     i18n (0.6.0)
-    jquery-rails (1.0.13)
+    jquery-rails (1.0.14)
       railties (~> 3.0)
       thor (~> 0.14)
     json (1.5.4)
@@ -245,7 +244,7 @@ DEPENDENCIES
   rcov
   remarkable_activerecord (~> 4.0.0.alpha4)
   rr
-  rspec
+  rspec (<= 2.6.1)
   rspec-rails
   ruby-debug19
   rubyzip

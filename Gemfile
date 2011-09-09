@@ -54,7 +54,7 @@ group :development, :test do
   gem 'capybara-webkit', :git => 'git://github.com/thoughtbot/capybara-webkit.git'
 
   # RSpec for testing
-  gem 'rspec'
+  gem 'rspec', '<= 2.6.1'
 
   # Rails love for RSpec
   gem 'rspec-rails'
