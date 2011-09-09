@@ -1,0 +1,7 @@
+<h3 style="padding-bottom: 5px">Vendors</h3>
+
+<ul>
+  <% @vendors.each do |vendor| %>
+    <li><%= link_to vendor.name, vendor_path(vendor) %> by <%= vendor.user.username %> (<%= time_ago_in_words(vendor.created_at) %> ago)</li>
+  <% end %>
+</ul>

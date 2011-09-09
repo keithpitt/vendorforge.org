@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def index
-    # Do nothing
+    @latest_vendors = Vendor.latest.limit(5)
   end
 
 end

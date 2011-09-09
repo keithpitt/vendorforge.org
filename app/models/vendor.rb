@@ -12,6 +12,8 @@ class Vendor < ActiveRecord::Base
 
   before_validation :slugerize, :if => :name_changed?
 
+  scope :latest, order('created_at desc')
+
   def authors=(value)
     # Always ensure authors is an array
     super [ *value ]

@@ -1,7 +1,11 @@
 class VendorsController < ApplicationController
 
   before_filter :find_vendor, :only => [ :show ]
-  before_filter :authenticate_user!, :except => [ :show ]
+  before_filter :authenticate_user!, :only => [ :new, :create ]
+
+  def index
+    @vendors = Vendor.all
+  end
 
   def new
     @version = current_user.versions.new

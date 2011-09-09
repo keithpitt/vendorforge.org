@@ -26,6 +26,20 @@ describe Vendor do
     vendor.slug.should == "Something_goes-HERE-i"
   end
 
+  context "#latest" do
+
+    it "should return the latest vendors" do
+      second = FactoryGirl.create(:vendor)
+      first = FactoryGirl.create(:vendor)
+
+      vendors = Vendor.latest.limit(2)
+
+      vendors.first.should == first
+      vendors.second.should == second
+    end
+
+  end
+
   context "#to_param" do
 
     it "should return the slug" do

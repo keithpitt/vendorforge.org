@@ -9,3 +9,5 @@ en:
           attributes:
             package:
               missing_spec: "Missing vendor spec in package"
+            number:
+              existing_version: "A version of this vendor package already exists"

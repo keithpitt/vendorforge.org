@@ -4,6 +4,6 @@ Vendorage::Application.routes.draw do
 
   root :to => 'pages#index'
 
-  resources :vendors, :only => [ :new, :create, :show ]
+  resources :vendors, :only => [ :index, :new, :create, :show ]
 
 end

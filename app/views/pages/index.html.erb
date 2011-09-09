@@ -3,3 +3,11 @@
 <p>Dependency management for iOS and OSX Development.</p>
 
 <p>See <%= link_to "https://github.com/keithpitt/VendorKit", "https://github.com/keithpitt/VendorKit" %> for more information.<p>
+
+<h3 style="padding-bottom: 5px">Latest Vendors</h3>
+
+<ul>
+  <% @latest_vendors.each do |vendor| %>
+    <li><%= link_to vendor.name, vendor_path(vendor) %> by <%= vendor.user.username %> (<%= time_ago_in_words(vendor.created_at) %> ago)</li>
+  <% end %>
+</ul>

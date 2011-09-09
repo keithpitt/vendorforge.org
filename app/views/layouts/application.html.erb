@@ -11,8 +11,9 @@
     <h1 style="padding-top: 20px">Vendorage</h1>
     <ul class="tabs">
       <li class="<%= controller_name == 'pages' ? "active" : "" %>"><%= link_to "Home", :root %></li>
+      <li class="<%= controller_name == 'vendors' && action_name =~ /(index|show)/ ? "active" : "" %>"><%= link_to "Vendors", vendors_path %></li>
       <% if user_signed_in? %>
-        <li class="<%= controller_name == 'vendors' ? "active" : "" %>"><%= link_to "Upload", new_vendor_path %></li>
+        <li class="<%= controller_name == 'vendors' && action_name =~ /(new|create)/ ? "active" : "" %>"><%= link_to "Upload", new_vendor_path %></li>
         <li class="<%= controller_name == 'registrations' ? "active" : "" %>"><%= link_to "Settings", edit_user_registration_path %></li>
         <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
       <% else %>
