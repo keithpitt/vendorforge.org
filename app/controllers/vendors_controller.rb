@@ -28,7 +28,7 @@ class VendorsController < ApplicationController
       id = params[:id]
       @vendor = Vendor.where{ lower(:slug) == id.downcase}.first if id.present?
 
-      raise ActiveRecord::RecordNotFound unless @vendor.present?
+      raise ActiveRecord::RecordNotFound.new("Vendor not found") unless @vendor.present?
     end
 
 end

@@ -1,16 +1,20 @@
 class ApplicationController < ActionController::Base
 
+  class PermissionDenied < StandardError; end
+
   protect_from_forgery
 
-  rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+  rescue_from (ActiveRecord::RecordNotFound) { |exception| render_error(exception, 404) }
+  rescue_from (PermissionDenied) { |exception| render_error(exception, 403) }
 
   private
 
-  def render_404(exception = nil)
-    if exception
-      logger.info "Rendering 404: #{exception.message}"
+    def render_error(exception, status)
+      if params[:format] == "json"
+        render :json => { :status => "error", :message => exception.message }, :status => 403
+      else
+        render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
+      end
     end
-    render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
-  end
 
 end
