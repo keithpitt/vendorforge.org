@@ -1,4 +1,4 @@
-Vendorage::Application.routes.draw do
+Vendorforge::Application.routes.draw do
 
   devise_for :users
 

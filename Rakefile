@@ -6,7 +6,7 @@ require File.expand_path('../config/application', __FILE__)
 require 'rake/dsl_definition'
 require 'rake'
 
-Vendorage::Application.load_tasks
+Vendorforge::Application.load_tasks
 
 if %(development test).include?(Rails.env)
   require 'rspec/core'
