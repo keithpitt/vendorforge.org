@@ -1,3 +1,11 @@
 <h3><%= @vendor.name %></h3>
 
 <p><%= @vendor.description %></p>
+
+<h4>Versions</h4>
+
+<ul>
+  <% @vendor.versions.each do |version| %>
+    <li><%= link_to version.number, '#' %> by <%= version.user.username %> (<%= time_ago_in_words(version.created_at) %> ago)</li>
+  <% end %>
+</ul>
