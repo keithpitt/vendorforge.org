@@ -1,7 +1,10 @@
 source 'http://rubygems.org'
 
+# Use latest rack to get rid of pesky errors
+gem 'rack', '~> 1.3.5'
+
 # Rails 3.1, oooer
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.1'
 
 # Postgres database
 gem 'pg'
@@ -53,14 +56,11 @@ group :development, :test do
   # Headless testing
   gem 'capybara-webkit', :git => 'git://github.com/thoughtbot/capybara-webkit.git'
 
-  # RSpec for testing
-  gem 'rspec', '<= 2.6.1'
-
   # Rails love for RSpec
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.7.0'
 
-  # Remarkable for active record testing
-  gem 'remarkable_activerecord', '~> 4.0.0.alpha4'
+  # For easier tests
+  gem 'shoulda-matchers'
 
   # Mocking/stubbing
   gem 'rr'

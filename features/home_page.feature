@@ -6,7 +6,7 @@ Feature: The Home Page
 
   Scenario: User logs in successfully
     Given I have already logged in as "keithpitt"
-    And I upload a vendor package called "DKBenchmark-0.1"
+    And I upload a vendor package called "DKBenchmark-0.1.vendor"
 
     When I go to the home page
 

@@ -1,1 +1,5 @@
-rvm use 1.9.2@vendorforge --create
+if [[ `rvm list` == *1.9.2-p290-patched* ]]; then
+  rvm 1.9.2-p290-patched@vendorforge --create
+else
+  rvm 1.9.2-p290@vendorforge --create
+fi

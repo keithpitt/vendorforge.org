@@ -4,7 +4,6 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'factory_girl'
 require 'forgery'
-require 'remarkable/active_record'
 require 'json'
 require 'carrierwave/test/matchers'
 

@@ -13,15 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20110909085210) do
 
-  create_table "authors", :force => true do |t|
-    t.integer  "vendor_id"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "authors", ["vendor_id"], :name => "index_authors_on_vendor_id"
-
   create_table "downloads", :force => true do |t|
     t.integer  "vendor_id"
     t.integer  "version_id"

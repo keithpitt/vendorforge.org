@@ -1,4 +1,5 @@
 When /^I upload a vendor package called "([^"]*)"$/ do |vendor|
+  And %{I go to the vendor upload page}
   path = Rails.root.join("spec", "resources", "vendors", vendor)
   attach_file("Package", path)
   click_button "Upload"

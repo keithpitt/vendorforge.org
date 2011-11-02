@@ -18,3 +18,6 @@ if %(development test).include?(Rails.env)
     t.rcov_opts = %w{--rails --exclude osx\/objc,gems\/,spec\/,features\/}
   end
 end
+
+task(:default).clear
+task :default => [ :spec, :cucumber ]
