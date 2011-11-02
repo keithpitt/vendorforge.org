@@ -5,6 +5,7 @@ CarrierWave.configure do |config|
     config.storage = :file
     config.enable_processing = false
   else
+    config.storage = :fog
     config.fog_credentials = {
       :provider               => 'AWS',
       :aws_access_key_id      => ENV['S3_KEY'],
