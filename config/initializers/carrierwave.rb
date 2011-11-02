@@ -11,7 +11,7 @@ CarrierWave.configure do |config|
       :aws_secret_access_key  => ENV['S3_SECRET'],
       :region                 => 'us-east-1'
     }
-    config.fog_directory      = "vendorforge/#{Rails.env}"
+    config.fog_directory      = "vendorforge-#{Rails.env}"
     config.cache_dir          = "#{Rails.root}/tmp/uploads"
   end
 
