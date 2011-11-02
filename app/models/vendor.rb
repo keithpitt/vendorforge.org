@@ -2,7 +2,7 @@ class Vendor < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :versions
+  has_many :versions, :dependent => :destroy
 
   validates :name, :presence => true, :uniqueness => true
   validates :slug, :presence => true, :uniqueness => true
