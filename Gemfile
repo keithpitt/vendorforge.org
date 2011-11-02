@@ -18,11 +18,17 @@ gem 'devise'
 # File Uploads
 gem 'carrierwave'
 
+# And storage on S3
+gem 'fog'
+
 # Unzipping pants
 gem 'rubyzip'
 
 # For better ActiveRecord searching
 gem "squeel"
+
+# Running multiple proccess easier
+gem 'foreman'
 
 # Gems used only for assets and not required
 # in production environments by default.
