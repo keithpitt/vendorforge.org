@@ -1,4 +1,17 @@
 GIT
+  remote: git://github.com/keithpitt/vendor.git
+  revision: 2871e446eb91f6f71e6927d0cb976afc976c84ff
+  specs:
+    vendor (0.0.4)
+      highline
+      json
+      rake
+      rest-client
+      ripl
+      rubyzip
+      thor
+
+GIT
   remote: git://github.com/thoughtbot/capybara-webkit.git
   revision: 93bfcf6e4642b14a1f401706f14bf672568fa7f0
   specs:
@@ -40,6 +53,7 @@ GEM
     archive-tar-minitar (0.5.2)
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
+    bond (0.4.1)
     builder (3.0.0)
     capybara (1.1.1)
       mime-types (>= 1.16)
@@ -113,6 +127,7 @@ GEM
       rest-client (~> 1.6.1)
       rubyzip
       term-ansicolor (~> 1.0.5)
+    highline (1.6.2)
     hike (1.2.1)
     i18n (0.6.0)
     jquery-rails (1.0.16)
@@ -170,6 +185,8 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    ripl (0.5.1)
+      bond (~> 0.4.0)
     rr (1.0.4)
     rspec (2.7.0)
       rspec-core (~> 2.7.0)
@@ -265,3 +282,4 @@ DEPENDENCIES
   shoulda-matchers
   squeel
   uglifier
+  vendor!

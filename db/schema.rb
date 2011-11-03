@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110909085210) do
+ActiveRecord::Schema.define(:version => 20111103120938) do
+
+  create_table "dependencies", :force => true do |t|
+    t.integer  "version_id"
+    t.string   "name"
+    t.string   "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "dependencies", ["version_id"], :name => "index_dependencies_on_version_id"
 
   create_table "downloads", :force => true do |t|
     t.integer  "vendor_id"
@@ -49,13 +59,14 @@ ActiveRecord::Schema.define(:version => 20110909085210) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "homepage"
-    t.string   "github"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "authors"
     t.string   "email"
     t.string   "slug"
+    t.string   "source"
+    t.string   "docs"
   end
 
   add_index "vendors", ["name"], :name => "index_vendors_on_name"

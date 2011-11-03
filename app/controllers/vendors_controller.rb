@@ -6,7 +6,7 @@ class VendorsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :new, :create ]
 
   def index
-    @vendors = Vendor.all
+    @vendors = VendorForge::Vendor.all
   end
 
   def new
@@ -20,7 +20,7 @@ class VendorsController < ApplicationController
       respond_with do |format|
         format.html {
           flash[:success] = "Vendor uploaded successfully"
-          redirect_to @version.vendor
+          redirect_to vendor_path(@version.vendor)
         }
         format.json {
           render :json => { :status => "ok", :url => vendor_path(@version.vendor) }
@@ -42,7 +42,7 @@ class VendorsController < ApplicationController
 
     def find_vendor
       id = params[:id]
-      @vendor = Vendor.where{ lower(:slug) == id.downcase}.first if id.present?
+      @vendor = VendorForge::Vendor.where{ lower(:slug) == id.downcase}.first if id.present?
 
       raise ActiveRecord::RecordNotFound.new("Vendor not found") unless @vendor.present?
     end

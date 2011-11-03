@@ -1,6 +1,6 @@
 <%= form_errors!(@version) %>
 
-<%= form_for(@version, :url => vendors_path) do |f| %>
+<%= form_for(@version, :as => :version, :url => vendors_path) do |f| %>
 
   <fieldset>
 

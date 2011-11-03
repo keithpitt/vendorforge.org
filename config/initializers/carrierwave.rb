@@ -1,7 +1,7 @@
 CarrierWave.configure do |config|
 
-  # Use local file storage for tests
-  if Rails.env.test? or Rails.env.cucumber?
+  # Use local file storage for local dev
+  unless Rails.env.production?
     config.storage = :file
     config.enable_processing = false
   else

@@ -30,6 +30,9 @@ gem "squeel"
 # Running multiple proccess easier
 gem 'foreman'
 
+# I need parts of vendor to do awesome stuff
+gem 'vendor', :git => 'git://github.com/keithpitt/vendor.git'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

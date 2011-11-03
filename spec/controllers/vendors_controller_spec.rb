@@ -16,7 +16,7 @@ describe VendorsController do
         get :new
 
         response.should be_success
-        assigns[:version].should be_kind_of(Version)
+        assigns[:version].should be_kind_of(VendorForge::Version)
         assigns[:version].should_not be_persisted
       end
 
@@ -51,7 +51,7 @@ describe VendorsController do
           post :create, :version => { :package => fixture_file_upload(upload) }
 
           response.should redirect_to("/vendors/DKBenchmark")
-        end.should change(Vendor, :count).by(1)
+        end.should change(VendorForge::Vendor, :count).by(1)
       end
 
       it "should render the new page an invalid package" do
@@ -60,7 +60,7 @@ describe VendorsController do
 
           response.should be_success
           response.should render_template(:new)
-        end.should change(Vendor, :count).by(0)
+        end.should change(VendorForge::Vendor, :count).by(0)
       end
 
     end

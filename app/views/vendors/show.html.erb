@@ -2,10 +2,20 @@
 
 <p><%= @vendor.description %></p>
 
+<pre>lib "<%= @vendor.name %>", "<%= @vendor.release.version.spermy_recommendation %>"</pre>
+
 <h4>Versions</h4>
 
 <ul>
   <% @vendor.versions.each do |version| %>
     <li><%= link_to version.number, '#' %> by <%= version.user.username %> (<%= time_ago_in_words(version.created_at) %> ago)</li>
+  <% end %>
+</ul>
+
+<h4>Dependencies</h4>
+
+<ul>
+  <% @vendor.release.dependencies.each do |dependency| %>
+    <li><%= link_to dependency.name, dependency.name.slugerize %> <%= dependency.number %></li>
   <% end %>
 </ul>

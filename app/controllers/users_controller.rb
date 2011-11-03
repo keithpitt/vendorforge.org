@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
     def find_user
       id = params[:id]
-      @user = User.where{ lower(:username) == id.downcase}.first if id.present?
+      @user = VendorForge::User.where{ lower(:username) == id.downcase}.first if id.present?
 
       raise ActiveRecord::RecordNotFound.new("User not found") unless @user.present?
     end

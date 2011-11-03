@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User do
+describe VendorForge::User do
 
   let(:user) { FactoryGirl.create(:user) }
 
@@ -17,11 +17,11 @@ describe User do
   describe "#find_for_database_authentication"do
 
     it "should allow you to login via a username" do
-      User.find_for_database_authentication(:login => user.username).should == user
+      VendorForge::User.find_for_database_authentication(:login => user.username).should == user
     end
 
     it "should allow you to authenticate via an email address" do
-      User.find_for_database_authentication(:login => user.email).should == user
+      VendorForge::User.find_for_database_authentication(:login => user.email).should == user
     end
 
   end
@@ -29,11 +29,11 @@ describe User do
   describe "#find_record" do
 
     it "should return a user matching the username" do
-      User.find_record(user.username).should == user
+      VendorForge::User.find_record(user.username).should == user
     end
 
     it "should return a user matching the email address" do
-      User.find_record(user.email).should == user
+      VendorForge::User.find_record(user.email).should == user
     end
 
   end

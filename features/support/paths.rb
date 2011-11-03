@@ -21,7 +21,7 @@ module NavigationHelpers
       new_vendor_path
 
     when /^the "([^"]*)" vendor page$/
-      vendor_path(Vendor.where(:name => $1).first)
+      vendor_path(VendorForge::Vendor.where(:name => $1).first)
 
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))

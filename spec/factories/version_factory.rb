@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :version do
+  factory :version, :class => "VendorForge::Version" do
     number      "0.1"
     association :vendor
   end
