@@ -13,6 +13,15 @@ class VendorsController < ApplicationController
     @version = current_user.versions.new
   end
 
+  def show
+    respond_to do |format|
+      format.html
+      format.json {
+        render :json => @vendor.to_json
+      }
+    end
+  end
+
   def create
     @version = current_user.versions.new(params[:version])
 

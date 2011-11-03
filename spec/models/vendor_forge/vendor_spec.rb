@@ -40,6 +40,12 @@ describe VendorForge::Vendor do
 
   end
 
+  context "#as_json" do
+
+    it "should return the right attributes"
+
+  end
+
   context "#to_param" do
 
     it "should return the slug" do

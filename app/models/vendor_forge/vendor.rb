@@ -28,6 +28,16 @@ module VendorForge
       slug
     end
 
+    def as_json(options = {})
+      {
+        :name => name,
+        :description => description,
+        :release => release.number,
+        :versions => versions.map(&:number),
+        :dependencies => versions.map { |v| [ v.number, v.dependencies.map { |d| [ d.name, d.number ] } ] }
+      }
+    end
+
     private
 
       def slugerize

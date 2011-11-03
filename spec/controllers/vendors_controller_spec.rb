@@ -96,6 +96,8 @@ describe VendorsController do
       response.status.should == 404
     end
 
+    it "should show a json version of the library"
+
   end
 
 end
