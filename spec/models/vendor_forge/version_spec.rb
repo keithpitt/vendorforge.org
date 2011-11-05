@@ -4,6 +4,7 @@ describe VendorForge::Version do
 
   it { should belong_to(:vendor) }
   it { should belong_to(:user) }
+  it { should have_many(:downloads) }
 
   it { should validate_presence_of(:number) }
   it { should validate_presence_of(:user) }
@@ -94,7 +95,14 @@ describe VendorForge::Version do
         { "authors"=> ["keithpitt", "mariovisic" ], "files"=>["DKBenchmark.h", "DKBenchmark.m"],
           "homepage"=>"http://www.mariovisic.com", "source"=>"https://github.com/mariovisic/DKBenchmark",
           "description"=>"Easy benchmarking with cheese", "name"=>"DKBenchmark",
-          "email"=>"mario@mariovisic.com", "version"=>"0.2" }
+          "email"=>"mario@mariovisic.com", "version" => "0.2" }
+    }
+
+    let(:old_vendor_spec) {
+        { "authors"=> ["keithpitt", "mariovisic" ], "files"=>["DKBenchmark.h", "DKBenchmark.m"],
+          "homepage"=>"http://www.mariovisic.com", "source"=>"https://github.com/mariovisic/DKBenchmark",
+          "description"=>"THIS IS THE OLD ONE!!", "name"=>"DKBenchmark",
+          "email"=>"mario@mariovisic.com", "version" => "0.0.1" }
     }
 
     context 'with an existing vendor' do
@@ -139,7 +147,12 @@ describe VendorForge::Version do
         version.errors[:vendor].should_not be_nil
       end
 
-      it "should only update the vendor attributes if the new version record has a higher number than the current version"
+      it "should only update the vendor attributes if the new version record has a higher number than the current version" do
+        version = VendorForge::Version.new(:user => user, :vendor_spec => old_vendor_spec)
+        version.save
+
+        version.vendor.description.should_not == "THIS IS THE OLD ONE!!"
+      end
 
     end
 

@@ -1,8 +1,9 @@
 FactoryGirl.define do
 
   factory :version, :class => "VendorForge::Version" do
-    number      "0.1"
-    association :vendor
+    number { "#{rand(9)}.#{rand(9)}.#{rand(9)}" }
+    user
+    vendor
   end
 
 end

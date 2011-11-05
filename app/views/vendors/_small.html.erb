@@ -1,0 +1,4 @@
+<li>
+  <strong><%= link_to "#{vendor.name} #{vendor.release.number}", vendor_path(vendor) %></strong>
+  <br/><em>Uploaded by <%= vendor.user.username %> <%= time_ago_in_words(vendor.created_at) %> ago</em>
+</li>

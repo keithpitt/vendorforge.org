@@ -225,7 +225,6 @@ GEM
       mime-types (>= 1.16)
     ripl (0.5.1)
       bond (~> 0.4.0)
-    rr (1.0.4)
     rspec (2.7.0)
       rspec-core (~> 2.7.0)
       rspec-expectations (~> 2.7.0)
@@ -319,7 +318,6 @@ DEPENDENCIES
   rb-fsevent
   rb-inotify
   rcov
-  rr
   rspec-rails (= 2.7.0)
   ruby-debug19
   rubyzip

@@ -8,6 +8,6 @@
 
 <ul>
   <% @latest_vendors.each do |vendor| %>
-    <li><%= link_to vendor.name, vendor_path(vendor) %> by <%= vendor.user.username %> (<%= time_ago_in_words(vendor.created_at) %> ago)</li>
+    <%= render :partial => "vendors/small", :locals => { :vendor => vendor } %>
   <% end %>
 </ul>

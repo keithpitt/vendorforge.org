@@ -3,7 +3,7 @@ class VendorsController < ApplicationController
   respond_to :html, :json
 
   before_filter :find_vendor, :only => [ :show, :download ]
-  before_filter :find_version, :only => [ :download ]
+  before_filter :find_version, :only => [ :show, :download ]
 
   before_filter :authenticate_user!, :only => [ :new, :create ]
 
@@ -65,9 +65,15 @@ class VendorsController < ApplicationController
     end
 
     def find_version
-      @version = @vendor.versions.where(:number => params[:version]).first
+      version = params[:version]
 
-      raise ActiveRecord::RecordNotFound.new("Version not found") unless @version.present?
+      if version
+        @version = @vendor.versions.where(:number => version).first
+
+        raise ActiveRecord::RecordNotFound.new("Version not found") unless @version.present?
+      else
+        @version = @vendor.release
+      end
     end
 
 end

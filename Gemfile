@@ -86,11 +86,10 @@ group :development, :test do
   # For easier tests
   gem 'shoulda-matchers'
 
-  # Mocking/stubbing
-  gem 'rr'
-
   # Generating testing + dummy data
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', :require => false
+
+  # For fake data
   gem 'forgery'
 
   # Code coverage

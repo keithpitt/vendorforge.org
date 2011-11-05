@@ -16,7 +16,10 @@ module VendorForge
     scope :latest, order('created_at desc')
 
     def release
-      versions.last
+      sorted = versions.sort.reverse
+      first_non_prerelease = sorted.find { |version| !version.version.prerelease? }
+
+      first_non_prerelease ? first_non_prerelease : sorted.first
     end
 
     def authors=(value)
@@ -34,7 +37,7 @@ module VendorForge
         :description => description,
         :release => release.number,
         :versions => versions.map(&:number),
-        :dependencies => versions.map { |v| [ v.number, v.dependencies.map { |d| [ d.name, d.number ] } ] }
+        :dependencies => versions.sort.map { |v| [ v.number, v.dependencies.map { |d| [ d.name, d.number ] } ] }
       }
     end
 

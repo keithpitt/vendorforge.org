@@ -85,11 +85,14 @@ module VendorForge
           self.vendor = VendorForge::Vendor.new(:name => vendor_spec[:name], :user => user)
         end
 
-        [ :email, :homepage, :description, :authors, :source, :docs ].each do |attr|
-          vendor.send("#{attr}=", vendor_spec[attr])
-        end
-
         self.number = vendor_spec[:version]
+
+        # Only update the vendor if the new version is higher than the existing one
+        if !vendor.release || (vendor.release && self.version > vendor.release.version)
+          [ :email, :homepage, :description, :authors, :source, :docs ].each do |attr|
+            vendor.send("#{attr}=", vendor_spec[attr])
+          end
+        end
       end
 
       def update_dependencies

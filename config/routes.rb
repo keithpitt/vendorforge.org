@@ -5,6 +5,7 @@ Vendorforge::Application.routes.draw do
   root :to => 'pages#index'
 
   resources :vendors, :only => [ :index, :new, :create, :show ] do
+    get "versions/:version" => "vendors#show", :as => :version, :constraints  => { :version => /[0-z\.]+/ }
     get "download/:version" => "vendors#download", :as => :download, :constraints  => { :version => /[0-z\.]+/ }
   end
 

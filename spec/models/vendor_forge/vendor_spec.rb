@@ -40,9 +40,43 @@ describe VendorForge::Vendor do
 
   end
 
+  context "#release" do
+
+    it "should return the latest version" do
+      vendor.versions.build :number => "1.5"
+      vendor.versions.build :number => "1.5.2"
+      vendor.versions.build :number => "2"
+      vendor.versions.build :number => "2.3.2"
+
+      vendor.release.number.should == "2.3.2"
+    end
+
+    it "should try and ignore pre-release versions" do
+      vendor.versions.build :number => "1.5"
+      vendor.versions.build :number => "1.5.2"
+      vendor.versions.build :number => "2.3.2.alpha1"
+      vendor.versions.build :number => "2"
+      vendor.versions.build :number => "2.3.1"
+      vendor.versions.build :number => "2.3.5.alpha1"
+      vendor.versions.build :number => "2.3.5.alpha2"
+      vendor.versions.build :number => "2.3.5.alpha3"
+
+      vendor.release.number.should == "2.3.1"
+    end
+
+  end
+
   context "#as_json" do
 
-    it "should return the right attributes"
+    it "should return the json version of the vendor" do
+      vendor.as_json.should == {
+        :name => vendor.name,
+        :description => vendor.description,
+        :release => vendor.release.number,
+        :versions => vendor.versions.map(&:number),
+        :dependencies => vendor.versions.sort.map { |v| [ v.number, v.dependencies.map { |d| [ d.name, d.number ] } ] }
+      }
+    end
 
   end
 
