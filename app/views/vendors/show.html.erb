@@ -5,34 +5,50 @@
 
 <pre>lib "<%= @vendor.name %>", "~> <%= @version.version %>"</pre>
 
+<h4>Actions</h4>
+
 <p>
-  <strong><%= link_to "Download #{@vendor.name} #{@version.number}", vendor_download_path(@vendor, :version => @version.number) %></strong>
+  <%= link_to "Download #{@vendor.name} #{@version.number}", vendor_download_path(@vendor, :version => @version.number) %>
   <% if @version.user == current_user %>
-    <br /><strong><%= link_to "Delete Version", vendor_path(@vendor), :method => :delete, :confirm => "Are you sure you want to destroy with version?", :class => "delete-version-button" %></strong>
+    &nbsp;|&nbsp;<%= link_to "Delete Version", vendor_path(@vendor), :method => :delete, :confirm => "Are you sure you want to destroy with version?", :class => "delete-version-button" %>
   <% end %>
 </p>
 
-<h4>Links</h4>
+<% links = [] %>
+<% links << link_to("Homepage", @vendor.homepage) if @vendor.homepage.present? %>
+<% links << link_to("Source", @vendor.source) if @vendor.source.present? %>
+<% links << link_to("Docs", @vendor.docs) if @vendor.docs.present? %>
 
-<% if @vendor.homepage %>
-  <p><%= link_to "Homepage", @vendor.homepage %></p>
+<% if links.any? %>
+
+  <h4>Links</h4>
+
+  <p><%= links.join("&nbsp;|&nbsp;".html_safe).html_safe %></p>
+
 <% end %>
 
-<h4>Versions</h4>
+<% if @vendor.versions.any? %>
 
-<ul>
-  <% @vendor.versions.sort.reverse.each do |version| %>
-    <li>
-    <strong><%= link_to version.number, vendor_version_path(:vendor_id => @vendor.to_param, :version => version.number) %></strong> (<%= version.downloads.count %> downloads)
-    <br/><em>uploaded by <%= version.user.username %> <%= time_ago_in_words(version.created_at) %> ago</em>
-    </li>
-  <% end %>
-</ul>
+  <h4>Versions</h4>
 
-<h4>Dependencies</h4>
+  <ul>
+    <% @vendor.versions.sort.reverse.each do |version| %>
+      <li>
+      <strong><%= link_to version.number, vendor_version_path(:vendor_id => @vendor.to_param, :version => version.number) %></strong> (<%= version.downloads.count %> downloads)
+      <br/><em>uploaded by <%= version.user.username %> <%= time_ago_in_words(version.created_at) %> ago</em>
+      </li>
+    <% end %>
+  </ul>
 
-<ul>
-  <% @version.dependencies.each do |dependency| %>
-    <li><strong><%= link_to dependency.name, vendor_path(dependency.name.slugerize) %></strong> <%= dependency.number %></li>
-  <% end %>
-</ul>
+<% end %>
+
+<% if @version.dependencies.any? %>
+
+  <h4>Dependencies</h4>
+  <ul>
+    <% @version.dependencies.each do |dependency| %>
+      <li><strong><%= link_to dependency.name, vendor_path(dependency.name.slugerize) %></strong> <%= dependency.number %></li>
+    <% end %>
+  </ul>
+
+<% end %>
