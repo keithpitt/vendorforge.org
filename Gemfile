@@ -53,7 +53,7 @@ group :development do
   # Gaurd for easier development (with things like spork)
   gem 'guard'
   gem 'rb-inotify', :require => false
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-fsevent', :require => false
   gem 'rb-fchange', :require => false
 
   # For guard rspec and cucumber support
@@ -98,10 +98,6 @@ group :development, :test do
   # So we can use guard to run spork
   gem 'spork', :git => "git://github.com/chrismdp/spork.git"
   gem 'guard-spork', :git => "git://github.com/guard/guard-spork.git"
-
-end
-
-group :test_mac do
 
   # Growl integration
   gem 'growl'
