@@ -48,6 +48,21 @@ group :assets do
 
 end
 
+group :development do
+
+  # Gaurd for easier development (with things like spork)
+  gem 'guard'
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-fchange', :require => false
+
+  # For guard rspec and cucumber support
+  gem 'guard-rspec', :git => "git://github.com/guard/guard-rspec.git"
+  gem 'guard-cucumber', :git => "git://github.com/guard/guard-cucumber.git"
+  gem 'guard-bundler'
+
+end
+
 group :development, :test do
 
   # Deploying on Heroku
@@ -81,15 +96,16 @@ group :development, :test do
   # Code coverage
   gem 'rcov'
 
+  # So we can use guard to run spork
+  gem 'spork', :git => "git://github.com/chrismdp/spork.git"
+  gem 'guard-spork', :git => "git://github.com/guard/guard-spork.git"
+
 end
 
 group :test_mac do
 
   # Growl integration
   gem 'growl'
-
-  # Something for something
-  gem 'rb-fsevent'
 
   # Better rspec formatter
   gem 'fuubar'

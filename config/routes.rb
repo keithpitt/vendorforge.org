@@ -4,7 +4,9 @@ Vendorforge::Application.routes.draw do
 
   root :to => 'pages#index'
 
-  resources :vendors, :only => [ :index, :new, :create, :show ]
+  resources :vendors, :only => [ :index, :new, :create, :show ] do
+    get "download/:version" => "vendors#download", :as => :download, :constraints  => { :version => /[0-z\.]+/ }
+  end
 
   match "users/:id/api_key" => "users#api_key", :defaults => { :format => "json" }
 

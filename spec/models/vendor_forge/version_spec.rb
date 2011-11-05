@@ -12,12 +12,49 @@ describe VendorForge::Version do
     VendorForge::Version.uploaders[:package].should == PackageUploader
   end
 
+  context "<=>" do
+
+    it "should return versions in the correct order when sorting" do
+      versions = [ VendorForge::Version.new(:number => '0.1'),
+                   VendorForge::Version.new(:number => '0.0.1'),
+                   VendorForge::Version.new(:number => '0.3.15'),
+                   VendorForge::Version.new(:number => '4.3.9'),
+                   VendorForge::Version.new(:number => '4.3.2'),
+                   VendorForge::Version.new(:number => '5.0.alpha'),
+                   VendorForge::Version.new(:number => '0.2.5') ]
+
+      versions.sort.map(&:number).should == ["0.0.1", "0.1", "0.2.5", "0.3.15", "4.3.2", "4.3.9", "5.0.alpha"]
+    end
+
+  end
+
+  context "#version" do
+
+    it "should return a version object" do
+      version = VendorForge::Version.new(:number => "0.2.5")
+
+      version.version.should == Vendor::Version.new("0.2.5")
+    end
+
+  end
+
+  context "#to_param" do
+
+    it "should return the version number" do
+      version = VendorForge::Version.new(:number => "0.2.5")
+
+      version.to_param.should == "0.2.5"
+    end
+
+  end
+
   context "uploading a vendor" do
 
     it "should load in the vendor spec" do
       vendor = File.open(Rails.root.join("spec", "resources", "vendors", "DKBenchmark-0.1.vendor"))
       version = VendorForge::Version.new(:package => vendor)
       version.save
+      version.errors[:package].should be_empty
 
       version.vendor.name.should == "DKBenchmark"
       version.number.should == "0.1"
@@ -28,7 +65,7 @@ describe VendorForge::Version do
       version = VendorForge::Version.new(:package => vendor)
       version.save
 
-      version.errors[:package].should_not be_nil
+      version.errors[:package].should_not be_empty
     end
 
     it "should return an error if the vendor package's spec is broken" do
@@ -36,7 +73,7 @@ describe VendorForge::Version do
       version = VendorForge::Version.new(:package => vendor)
       version.save
 
-      version.errors[:package].should_not be_nil
+      version.errors[:package].should_not be_empty
     end
 
   end

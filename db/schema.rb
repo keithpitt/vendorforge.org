@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111103120938) do
+ActiveRecord::Schema.define(:version => 20111105012656) do
 
   create_table "dependencies", :force => true do |t|
     t.integer  "version_id"
@@ -24,13 +24,11 @@ ActiveRecord::Schema.define(:version => 20111103120938) do
   add_index "dependencies", ["version_id"], :name => "index_dependencies_on_version_id"
 
   create_table "downloads", :force => true do |t|
-    t.integer  "vendor_id"
     t.integer  "version_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "downloads", ["vendor_id"], :name => "index_downloads_on_vendor_id"
   add_index "downloads", ["version_id"], :name => "index_downloads_on_version_id"
 
   create_table "users", :force => true do |t|

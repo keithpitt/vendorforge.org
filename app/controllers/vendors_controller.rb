@@ -2,7 +2,9 @@ class VendorsController < ApplicationController
 
   respond_to :html, :json
 
-  before_filter :find_vendor, :only => [ :show ]
+  before_filter :find_vendor, :only => [ :show, :download ]
+  before_filter :find_version, :only => [ :download ]
+
   before_filter :authenticate_user!, :only => [ :new, :create ]
 
   def index
@@ -20,6 +22,12 @@ class VendorsController < ApplicationController
         render :json => @vendor.to_json
       }
     end
+  end
+
+  def download
+    VendorForge::Download.create :version => @version
+
+    redirect_to @version.package.url
   end
 
   def create
@@ -50,10 +58,16 @@ class VendorsController < ApplicationController
   private
 
     def find_vendor
-      id = params[:id]
+      id = params[:id] || params[:vendor_id]
       @vendor = VendorForge::Vendor.where{ lower(:slug) == id.downcase}.first if id.present?
 
       raise ActiveRecord::RecordNotFound.new("Vendor not found") unless @vendor.present?
+    end
+
+    def find_version
+      @version = @vendor.versions.where(:number => params[:version]).first
+
+      raise ActiveRecord::RecordNotFound.new("Version not found") unless @version.present?
     end
 
 end

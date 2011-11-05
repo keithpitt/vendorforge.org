@@ -3,11 +3,11 @@ When /^I logout successfully$/ do
 end
 
 When /^I login successfully$/ do
-  When %{I login with "#{@last_user.email}" and "password"}
+  step %{I login with "#{@last_user.email}" and "password"}
 end
 
 When /^I login unsuccessfully$/ do
-  When %{I login with "#{@last_user.email}" and "incorrect-password"}
+  step %{I login with "#{@last_user.email}" and "incorrect-password"}
 end
 
 When /^I login with "([^"]*)" and "([^"]*)"$/ do |login, password|
@@ -18,12 +18,12 @@ When /^I login with "([^"]*)" and "([^"]*)"$/ do |login, password|
 end
 
 When /^I have already logged in$/ do
-  Given %{I have already logged in as "#{FactoryGirl.attributes_for(:user)[:email]}"}
+  step %{I have already logged in as "#{FactoryGirl.attributes_for(:user)[:email]}"}
 end
 
 When /^I have already logged in as "([^"]*)"$/ do |login|
-  Given %{I have already signed up as "#{login}"}
-  And %{I login successfully}
+  step %{I have already signed up as "#{login}"}
+  step %{I login successfully}
 end
 
 Then /^I should be logged in$/ do

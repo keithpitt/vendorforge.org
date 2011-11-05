@@ -8,7 +8,10 @@
 
 <ul>
   <% @vendor.versions.each do |version| %>
-    <li><%= link_to version.number, '#' %> by <%= version.user.username %> (<%= time_ago_in_words(version.created_at) %> ago)</li>
+    <li>
+    <strong><%= link_to version.number, vendor_download_path(@vendor, :version => version.number) %></strong> (<%= version.downloads.count %> downloads)
+    <br/><em>uploaded by <%= version.user.username %> <%= time_ago_in_words(version.created_at) %> ago</em>
+    </li>
   <% end %>
 </ul>
 
