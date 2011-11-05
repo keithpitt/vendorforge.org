@@ -5,7 +5,12 @@
 
 <pre>lib "<%= @vendor.name %>", "~> <%= @version.version %>"</pre>
 
-<p><strong><%= link_to "Download #{@vendor.name} #{@version.number}", vendor_download_path(@vendor, :version => @version.number) %></strong></p>
+<p>
+  <strong><%= link_to "Download #{@vendor.name} #{@version.number}", vendor_download_path(@vendor, :version => @version.number) %></strong>
+  <% if @version.user == current_user %>
+    <br /><strong><%= link_to "Delete Version", vendor_path(@vendor), :method => :delete, :confirm => "Are you sure you want to destroy with version?", :class => "delete-version-button" %></strong>
+  <% end %>
+</p>
 
 <h4>Links</h4>
 

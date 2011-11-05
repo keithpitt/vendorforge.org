@@ -2,10 +2,10 @@ class VendorsController < ApplicationController
 
   respond_to :html, :json
 
-  before_filter :find_vendor, :only => [ :show, :download ]
-  before_filter :find_version, :only => [ :show, :download ]
+  before_filter :find_vendor, :only => [ :show, :download, :destroy ]
+  before_filter :find_version, :only => [ :show, :download, :destroy ]
 
-  before_filter :authenticate_user!, :only => [ :new, :create ]
+  before_filter :authenticate_user!, :only => [ :new, :create, :destroy ]
 
   def index
     @vendors = VendorForge::Vendor.all
@@ -52,6 +52,22 @@ class VendorsController < ApplicationController
           render :json => { :status => "error", :message => @version.errors.full_messages.to_sentence }
         }
       end
+    end
+  end
+
+  def destroy
+    raise PermissionDenied if @version.user != current_user
+
+    @version.destroy
+    flash[:success] = "#{@vendor.name} v#{@version.number} was deleted succesfully"
+
+    # Does the vendor still exist?
+    begin
+      @vendor.reload
+
+      redirect_to vendor_path(@vendor)
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to :root
     end
   end
 

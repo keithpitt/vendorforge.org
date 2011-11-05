@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
       if params[:format] == "json"
         render :json => { :status => "error", :message => exception.message }, :status => status
       else
-        render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
+        render :file => "#{Rails.root}/public/#{status}.html", :status => status, :layout => false
       end
     end
 

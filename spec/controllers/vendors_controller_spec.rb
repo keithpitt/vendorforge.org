@@ -136,6 +136,52 @@ describe VendorsController do
 
   end
 
+  context "#destroy" do
+
+    let!(:version) { Factory.create(:version, :user => user) }
+
+    context "with a current user" do
+
+      before :each do
+        sign_in user
+      end
+
+      it "should destroy the vendor" do
+        expect do
+          delete :destroy, :id => version.vendor.name
+
+          response.should redirect_to(vendor_path(version.vendor))
+        end.should change(VendorForge::Version, :count).by(-1)
+      end
+
+      it "should return a 404 if the vendor couldn't be found" do
+        delete :destroy, :id => "DoesNotExist"
+
+        response.status.should == 404
+      end
+
+      it "should redirect if the user didn't upload the version" do
+        version.update_attribute :user, Factory.create(:user)
+        delete :destroy, :id => version.vendor.name
+
+        response.status.should == 403
+      end
+
+    end
+
+    context "with no user" do
+
+      it "should redirect to login" do
+        delete :destroy, :id => version.vendor.name
+
+        response.should_not be_success
+        response.should redirect_to(new_user_session_path)
+      end
+
+    end
+
+  end
+
   context "#download" do
 
     let(:package) { File.open(Rails.root.join("spec", "resources", "vendors", "DKBenchmark-0.1.vendor")) }

@@ -22,6 +22,7 @@ module VendorForge
     before_validation :extract_vendor_spec, :if => :package_changed?
     before_validation :update_from_vendor_spec, :if => :vendor_spec_changed?
     before_save :update_dependencies, :if => :vendor_spec_changed?
+    after_destroy :destroy_vendor
 
     def version
       ::Vendor::Version.new(number)
@@ -104,6 +105,12 @@ module VendorForge
           vendor_spec[:dependencies].each do |d|
             dependencies.build :name => d[0], :number => d[1]
           end
+        end
+      end
+
+      def destroy_vendor
+        if vendor.versions.count == 0
+          vendor.destroy
         end
       end
 

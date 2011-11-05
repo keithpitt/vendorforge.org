@@ -39,6 +39,29 @@ describe VendorForge::Version do
 
   end
 
+  context "#destroy" do
+
+    it "should destroy the vendor" do
+      vendor = Factory.create(:vendor)
+      vendor.versions.first.destroy
+
+      expect do
+        vendor.reload
+      end.should raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    it "should not destroy the vendor if there are multiple versions" do
+      vendor = Factory.create(:vendor)
+      other_version = Factory.create(:version, :vendor => vendor)
+      vendor.versions.first.destroy
+
+      expect do
+        vendor.reload
+      end.should_not raise_error(ActiveRecord::RecordNotFound)
+    end
+
+  end
+
   context "#to_param" do
 
     it "should return the version number" do
