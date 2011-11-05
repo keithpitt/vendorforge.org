@@ -1,5 +1,7 @@
 # Vendorforge.org
 
+[![Build Status](https://secure.travis-ci.org/keithpitt/vendorforge.org.png)](http://travis-ci.org/keithpitt/vendorforge.org)
+
 A site that allows you to publish and share iOS libraries created with the vendor gem. For more information, see: https://github.com/keithpitt/vendor
 
 ## Install
