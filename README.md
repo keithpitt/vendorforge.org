@@ -36,11 +36,9 @@ $ foreman start
 4. Commit, do not mess with rakefile, version, or history. (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 5. Send me a pull request. Bonus points for topic branches.
 
-## Copyright
-
-Copyright &copy; 2011 Keith Pitt. See LICENSE for details.
-
 ## Licence
+
+Copyright &copy; 2011 Keith Pitt
 
 MIT License
 
