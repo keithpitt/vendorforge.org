@@ -2,7 +2,11 @@ require 'spec_helper'
 
 describe VendorForge::Vendor do
 
-  let!(:vendor) { FactoryGirl.create(:vendor) }
+  let!(:vendor) do
+    vendor = FactoryGirl.create(:vendor, :name => "DKSupport", :description => "Foo bar")
+    vendor.versions.first.number = "1.0.2"
+    vendor
+  end
 
   it { should belong_to(:user) }
   it { should have_many(:versions) }
@@ -69,12 +73,16 @@ describe VendorForge::Vendor do
   context "#as_json" do
 
     it "should return the json version of the vendor" do
+      version = vendor.versions.first
+      version.dependencies.create(:name => "JSONKit", :number => "0.23")
+      version.dependencies.create(:name => "ASIHTTPRequest")
+      version.save!
+
       vendor.as_json.should == {
-        :name => vendor.name,
-        :description => vendor.description,
-        :release => vendor.release.number,
-        :versions => vendor.versions.map(&:number),
-        :dependencies => vendor.versions.sort.map { |v| [ v.number, v.dependencies.map { |d| [ d.name, d.number ] } ] }
+        :name => "DKSupport",
+        :description => "Foo bar",
+        :release => "0.1",
+        :versions => { "0.1" => { :dependencies => [ ["ASIHTTPRequest", nil], ["JSONKit", "0.23"] ] } }
       }
     end
 

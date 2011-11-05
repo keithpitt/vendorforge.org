@@ -36,8 +36,10 @@ module VendorForge
         :name => name,
         :description => description,
         :release => release.number,
-        :versions => versions.map(&:number),
-        :dependencies => versions.sort.map { |v| [ v.number, v.dependencies.map { |d| [ d.name, d.number ] } ] }
+        :versions => versions.inject({}) { |hash, v|
+          hash[v.number] = { :dependencies => v.dependencies.map { |d| [ d.name, d.number ] } }
+          hash
+        }
       }
     end
 
