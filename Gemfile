@@ -33,6 +33,9 @@ gem 'foreman'
 # I need parts of vendor to do awesome stuff
 gem 'vendor', :git => 'git://github.com/keithpitt/vendor.git'
 
+# Capture errors
+gem 'airbrake'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
