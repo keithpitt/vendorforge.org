@@ -82,7 +82,7 @@ describe VendorForge::Vendor do
         :name => "DKSupport",
         :description => "Foo bar",
         :release => "0.1",
-        :versions => { "0.1" => { :dependencies => [ ["ASIHTTPRequest", nil], ["JSONKit", "0.23"] ] } }
+        :versions => [ [ "0.1", { :dependencies => [ ["ASIHTTPRequest", nil], ["JSONKit", "0.23"] ] } ] ]
       }
     end
 

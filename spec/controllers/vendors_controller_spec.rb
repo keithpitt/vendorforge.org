@@ -112,17 +112,26 @@ describe VendorsController do
       get :show, :id => "more-energy"
 
       response.should_not be_success
-      response.status.should == 404
+      response.status.to_i.should == 404
     end
 
     it "should show a json version of the library" do
       get :show, :id => vendor.slug.upcase, :format => :json
 
       response.should be_success
-
       json = JSON.parse(response.body)
       json['name'].should == vendor.name
       json['release'].should == vendor.release.number
+    end
+
+    it "should return a status of 404 if requesting JSON and the vendor doesn't exist" do
+      get :show, :id => "DoestNotExist", :format => :json
+
+      response.should_not be_success
+      response.status.to_i.should == 404
+      json = JSON.parse(response.body)
+      json['status'].should == "error"
+      json['message'].should == "Vendor not found"
     end
 
   end
