@@ -34,7 +34,7 @@
   <ul>
     <% @vendor.versions.sort.reverse.each do |version| %>
       <li>
-      <strong><%= link_to version.number, vendor_version_path(:vendor_id => @vendor.to_param, :version => version.number) %></strong> (<%= version.downloads.count %> downloads)
+      <%= link_to version.number, vendor_version_path(:vendor_id => @vendor.to_param, :version => version.number) %> (<%= version.downloads.count %> downloads)
       <br/><em>uploaded by <%= version.user.username %> <%= time_ago_in_words(version.created_at) %> ago</em>
       </li>
     <% end %>
@@ -47,7 +47,7 @@
   <h4>Dependencies</h4>
   <ul>
     <% @version.dependencies.each do |dependency| %>
-      <li><strong><%= link_to dependency.name, vendor_path(dependency.name.slugerize) %></strong> <%= dependency.number %></li>
+      <li><%= link_to dependency.name, vendor_path(dependency.name.slugerize) %> <%= dependency.number %></li>
     <% end %>
   </ul>
 
