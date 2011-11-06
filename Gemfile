@@ -36,6 +36,9 @@ gem 'vendor', :git => 'git://github.com/keithpitt/vendor.git'
 # Capture errors
 gem 'airbrake'
 
+# Text formatting
+gem 'redcarpet'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

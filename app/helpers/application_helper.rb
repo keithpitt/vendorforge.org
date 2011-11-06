@@ -9,4 +9,9 @@ module ApplicationHelper
     end
   end
 
+  def markdown_render(text)
+    markdown = Redcarpet.new(text)
+    markdown.to_html.html_safe
+  end
+
 end

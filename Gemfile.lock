@@ -224,6 +224,7 @@ GEM
     rcov (0.9.11)
     rdoc (3.11)
       json (~> 1.4)
+    redcarpet (1.17.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     ripl (0.5.1)
@@ -322,6 +323,7 @@ DEPENDENCIES
   rb-fsevent
   rb-inotify
   rcov
+  redcarpet
   rspec-rails (= 2.7.0)
   ruby-debug19
   rubyzip
