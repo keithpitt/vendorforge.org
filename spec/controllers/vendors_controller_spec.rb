@@ -143,6 +143,9 @@ describe VendorsController do
     context "with a current user" do
 
       before :each do
+        version.vendor.update_attribute :user, user
+        version.update_attribute :user, user
+
         sign_in user
       end
 

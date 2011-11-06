@@ -2,10 +2,10 @@ class VendorsController < ApplicationController
 
   respond_to :html, :json
 
+  before_filter :authenticate_user!, :only => [ :new, :create, :destroy ]
+
   before_filter :find_vendor, :only => [ :show, :download, :destroy ]
   before_filter :find_version, :only => [ :show, :download, :destroy ]
-
-  before_filter :authenticate_user!, :only => [ :new, :create, :destroy ]
 
   def index
     @vendors = VendorForge::Vendor.all
