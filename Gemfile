@@ -27,9 +27,6 @@ gem 'rubyzip'
 # For better ActiveRecord searching
 gem "squeel"
 
-# Running multiple proccess easier
-gem 'foreman'
-
 # I need parts of vendor to do awesome stuff
 gem 'vendor', :git => 'git://github.com/keithpitt/vendor.git'
 
@@ -38,6 +35,15 @@ gem 'airbrake'
 
 # Text formatting
 gem 'redcarpet'
+
+# Posting to twitter
+gem 'twitter'
+
+# And shortening URLS for twitter
+gem 'is-gd-shrinker'
+
+# For background stuffs
+gem 'resque'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -56,6 +62,9 @@ end
 
 group :development do
 
+  # Running multiple proccess easier
+  gem 'foreman'
+
   # Gaurd for easier development (with things like spork)
   gem 'guard'
   gem 'rb-inotify', :require => false
@@ -67,12 +76,13 @@ group :development do
   gem 'guard-cucumber', :git => "git://github.com/guard/guard-cucumber.git"
   gem 'guard-bundler'
 
+  # Deploying on Heroku
+  gem 'heroku'
+
 end
 
 group :development, :test do
 
-  # Deploying on Heroku
-  gem 'heroku'
 
   # To use debugger
   gem 'ruby-debug19', :require => 'ruby-debug'
@@ -80,14 +90,28 @@ group :development, :test do
   # Cucumber for testing
   gem 'cucumber-rails'
 
-  # I like to have a clean ship
-  gem 'database_cleaner'
+  # Rails love for RSpec
+  gem 'rspec-rails', '2.7.0'
+
+  # So we can use guard to run spork
+  gem 'spork', :git => "git://github.com/chrismdp/spork.git"
+  gem 'guard-spork', :git => "git://github.com/guard/guard-spork.git"
+
+end
+
+group :test do
+
+  # Better rspec formatter
+  gem 'fuubar'
 
   # Headless testing
   gem 'capybara-webkit', :git => 'git://github.com/thoughtbot/capybara-webkit.git'
 
-  # Rails love for RSpec
-  gem 'rspec-rails', '2.7.0'
+  # Testing Resque
+  gem 'resque_spec'
+
+  # Code coverage
+  gem 'rcov'
 
   # For easier tests
   gem 'shoulda-matchers'
@@ -98,17 +122,10 @@ group :development, :test do
   # For fake data
   gem 'forgery'
 
-  # Code coverage
-  gem 'rcov'
-
-  # So we can use guard to run spork
-  gem 'spork', :git => "git://github.com/chrismdp/spork.git"
-  gem 'guard-spork', :git => "git://github.com/guard/guard-spork.git"
+  # I like to have a clean ship
+  gem 'database_cleaner'
 
   # Growl integration
   gem 'growl'
-
-  # Better rspec formatter
-  gem 'fuubar'
 
 end
