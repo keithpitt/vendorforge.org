@@ -4,6 +4,7 @@ module VendorForge
     belongs_to :user
 
     has_many :versions, :dependent => :destroy
+    has_many :downloads, :through => :versions
 
     validates :name, :presence => true, :uniqueness => true
     validates :slug, :presence => true, :uniqueness => true
@@ -13,7 +14,12 @@ module VendorForge
 
     before_validation :slugerize, :if => :name_changed?
 
-    scope :latest, order('created_at desc')
+    scope :latest, order('created_at DESC')
+    scope :updated, order('updated_at DESC')
+
+    def self.downloaded
+      joins{versions}.order('versions.downloads_count DESC')
+    end
 
     def release
       sorted = versions.sort.reverse

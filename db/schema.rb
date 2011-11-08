@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111105012656) do
+ActiveRecord::Schema.define(:version => 20111108121120) do
 
   create_table "dependencies", :force => true do |t|
     t.integer  "version_id"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20111105012656) do
     t.datetime "updated_at"
     t.string   "package"
     t.text     "vendor_spec"
+    t.integer  "downloads_count", :default => 0
   end
 
   add_index "versions", ["user_id"], :name => "index_versions_on_user_id"

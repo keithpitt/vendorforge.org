@@ -1,19 +1,67 @@
-<h3 style="padding-bottom: 5px">Welcome!</h3>
+<div class="hero-header">
+  <h2>Welcome! <small>So far, <%= VendorForge::Download.count %> downloads, <%= VendorForge::Vendor.count %> vendors</small></h2>
 
-<p>Dependency management for iOS and OSX Development.</p>
+  <p>Welcome to the Vendorforge! A place where you can upload, publish and find iOS/Mac OSX development libraries for your projects!</p>
+  <p>All parts of Vendor and Vendorforge are open source, so everyone is encouraged to contribute back!</p>
 
-<p>See <%= link_to "https://github.com/keithpitt/vendor", "https://github.com/keithpitt/vendor" %> for more information. Screencast coming soon...<p>
+  <a href="https://github.com/keithpitt/vendor" class="btn primary">See the source »</a>
+</div>
 
-<h4>Version 0.1 has been released!</h4>
+<div class="row">
 
-<p>Simply type the following into your Terminal to get started vendoring!</p>
+  <div class="span8">
+    <h4>News</h4>
+    <p><span class="label success">New!</span> <strong>Designer Wanted!</strong></p>
+    <p>Are you a designer? Want to help out an open source project and get your name in the credits?</p>
+    <p>I need some love poured across the Vendorforge website. Hit me up at <a href="https://twitter.com/keithpitt">@keithpitt</a> if you want to help out!</p>
 
-<pre>gem install vendor</pre>
+    <p><strong>Version 0.1.1 has been released!</strong></p>
+    <p>Vendor will now back up your Xcode project before saving it back to the filesystem.</p>
 
-<h3 style="padding-bottom: 5px">Latest Vendors</h3>
+    <p><strong>Version 0.1 has been released!</strong></p>
+    <p>Initial release! Check the <a href="https://github.com/keithpitt/vendor/blob/master/CHANGELOG.md">CHANGELOG</a> for the full featur set.</p>
+  </div>
 
-<ul>
-  <% @latest_vendors.each do |vendor| %>
-    <%= render :partial => "vendors/small", :locals => { :vendor => vendor } %>
-  <% end %>
-</ul>
+  <div class="span8">
+    <h4>What is Vendor?</h4>
+    <p><strong>Overview</strong></p>
+    <p>Vendor makes the process of using and managing libraries in iOS easy. Vendor is modeled after Bundler. Vendor streamlines the installation and update process for dependent libraries. It also tracks versions and manages dependencies between libraries.</p>
+    <p><strong>How does it work?</strong></p>
+    <p>Vendor works by making direct modifications to your project file. When you install a library, vendor will copy all the source files, build setting and frameworks
+    to your project, then save it. That way, when you want to install a library, all you have to do is add it to your Vendorfile, and then type into your Terminal <code>vendor install</code></p>
+  </div>
+
+</div>
+
+<hr />
+
+<div class="row">
+
+  <div class="span-one-third">
+    <h3 style="padding-bottom: 5px">New Vendors</h3>
+    <ul>
+      <% @latest_vendors.each do |vendor| %>
+        <%= render :partial => "vendors/small", :locals => { :vendor => vendor } %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="span-one-third">
+    <h3 style="padding-bottom: 5px">Most Downloaded</h3>
+    <ul>
+      <% @downloaded_vendors.each do |vendor| %>
+        <%= render :partial => "vendors/small", :locals => { :vendor => vendor } %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="span-one-third">
+    <h3 style="padding-bottom: 5px">Updated Vendors</h3>
+    <ul>
+      <% @updated_vendors.each do |vendor| %>
+        <%= render :partial => "vendors/small", :locals => { :vendor => vendor } %>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
