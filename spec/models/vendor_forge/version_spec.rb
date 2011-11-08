@@ -121,6 +121,13 @@ describe VendorForge::Version do
           "email"=>"mario@mariovisic.com", "version" => "0.2" }
     }
 
+    let(:newer_vendor_spec) {
+        { "authors"=> ["keithpitt", "mariovisic" ], "files"=>["DKBenchmark.h", "DKBenchmark.m"],
+          "homepage"=>"http://www.mariovisic.com", "source"=>"https://github.com/mariovisic/DKBenchmark",
+          "description"=>"Easy benchmarking with cheese AND BACON!", "name"=>"DKBenchmark",
+          "email"=>"mario@mariovisic.com", "version" => "0.2.1" }
+    }
+
     let(:old_vendor_spec) {
         { "authors"=> ["keithpitt", "mariovisic" ], "files"=>["DKBenchmark.h", "DKBenchmark.m"],
           "homepage"=>"http://www.mariovisic.com", "source"=>"https://github.com/mariovisic/DKBenchmark",
@@ -130,13 +137,17 @@ describe VendorForge::Version do
 
     context 'with an existing vendor' do
 
-      let!(:existing) { FactoryGirl.create(:vendor, :name => "DKBenchmark", :user => user) }
+      let!(:existing) do
+        version = VendorForge::Version.create!(:user => user, :vendor_spec => existing_vendor_spec)
+        version.reload
+        version
+      end
 
       it 'should use an existing vendor owned by the user if it exists' do
         version = VendorForge::Version.new(:user => user, :vendor_spec => new_vendor_spec)
         version.save
 
-        version.vendor.should == existing
+        version.vendor.should == existing.vendor
       end
 
       it "should add an error if the user doesn't own the existing vendor" do
@@ -160,7 +171,7 @@ describe VendorForge::Version do
       it 'should increase the version count on the verndors versions' do
         expect do
           VendorForge::Version.create(:user => user, :vendor_spec => new_vendor_spec)
-        end.should change(existing.versions, :count).by(1)
+        end.should change(existing.vendor.versions, :count).by(1)
       end
 
       it "should not allow you upload an existing version" do
@@ -171,8 +182,19 @@ describe VendorForge::Version do
       end
 
       it "should only update the vendor attributes if the new version record has a higher number than the current version" do
+        existing.vendor.release.version.to_s.should == "0.1"
+        version = VendorForge::Version.new(:user => user, :vendor_spec => newer_vendor_spec)
+        version.save
+        version.reload
+
+        version.vendor.description.should == "Easy benchmarking with cheese AND BACON!"
+        version.vendor.release.version.to_s.should == "0.2.1"
+      end
+
+      it "should not update vendor attributes if the version you push is older than the current one" do
         version = VendorForge::Version.new(:user => user, :vendor_spec => old_vendor_spec)
         version.save
+        version.reload
 
         version.vendor.description.should_not == "THIS IS THE OLD ONE!!"
       end

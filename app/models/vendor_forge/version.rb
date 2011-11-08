@@ -10,7 +10,7 @@ module VendorForge
 
     mount_uploader :package, PackageUploader
 
-    belongs_to :vendor
+    belongs_to :vendor, :autosave => true
     belongs_to :user
 
     has_many :dependencies
