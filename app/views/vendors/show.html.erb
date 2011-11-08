@@ -15,9 +15,10 @@
 </p>
 
 <% links = [] %>
-<% links << link_to("Homepage", @vendor.homepage) if @vendor.homepage.present? %>
-<% links << link_to("Source", @vendor.source) if @vendor.source.present? %>
-<% links << link_to("Docs", @vendor.docs) if @vendor.docs.present? %>
+<%- [ [ "Homepage", @vendor.homepage ], [ "Source", @vendor.source ], [ "Docs", @vendor.docs ] ].each do |link| %>
+  <%- url = format_url(link[1]) %>
+  <%- links <<  link_to(link[0], url) if url %>
+<%- end %>
 
 <% if links.any? %>
 
